@@ -41,6 +41,12 @@ media:
 media_aur:
   - spotify
 
+misc:
+  - gnome-keyring
+  - obsidian
+  - calibre
+  - qbittorrent
+
 security:
   - bitwarden
   - gufw

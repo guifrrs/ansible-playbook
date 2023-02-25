@@ -19,14 +19,34 @@ The playbook is designed to be run on a fresh install of Manjaro Linux. In the f
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Python](https://www.python.org/downloads/) >= 3.0
 
-<!-- ## What is included
-
-Each role includes a certain set of packages and configuration files. You can check on the 'all.yml' file to see what is included in each role.
+## What is included
 
 ## Running the playbook
 
-| Role               | Description                                       |
-| ------------------ | ------------------------------------------------- |
-| [base](roles/base) | Installs base packages and configures the system. |
+## Development
 
-## Development -->
+There's a Dockerfile included in the project that can be used to run the playbook in a container. This is useful for testing the playbook on a fresh install of Manjaro Linux and check that everything is working as expected.
+
+First of all, you need to build the Docker image by running the following command:
+
+```bash
+docker build . -t fresh-machine --build-arg username=<your-username>
+```
+
+After the image is built, you can run the playbook directly in the container by running the following command:
+
+```bash
+docker run --rm -it fresh-machine ansible-playbook playbook.yml --extra-vars "user_name=<your-username>" -vvvv # or any other verbosity level
+```
+
+If you want to run a specific role, you can run the following command:
+
+```bash
+docker run --rm -it fresh-machine ansible-playbook playbook.yml --tags <role-name> --extra-vars "user_name=<your-username>" -vvvv # or any other verbosity level
+```
+
+You can call bash inside the container and run the playbook from there, to check that everything is working as expected in some specific scenario, by running the following command:
+
+```bash
+docker run --rm -it fresh-machine bash
+```

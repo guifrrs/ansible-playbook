@@ -1,0 +1,48 @@
+base:
+  - base-devel
+  - htop
+  - openssh
+  - tree
+  - wget
+  - git
+  - xclip
+
+browsers:
+  - firefox-developer-edition
+
+browsers_aur:
+  - google-chrome
+
+comms:
+  - discord
+  - telegram-desktop
+
+comms_aur:
+  - slack-desktop
+
+dev:
+  - dbeaver
+  - docker
+  - docker-compose
+
+dev_aur:
+  - insomnia-bin
+  - httptoolkit
+
+editors:
+  - neovim
+
+editors_aur:
+  - visual-studio-code-bin
+
+media:
+  - vlc
+
+media_aur:
+  - spotify
+
+security:
+  - bitwarden
+  - gufw
+  - ufw
+  - ufw-extras

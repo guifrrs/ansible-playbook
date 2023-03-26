@@ -16,6 +16,14 @@
     mode: 0755
   become: true
 
+- name: Clone dotfiles
+  ansible.builtin.git:
+    repo: https://github.com/guifrrs/dotfiles
+    dest: /home/{{ user_name }}/Development/dotfiles
+    update: true
+  tags:
+    - base
+
 - name: Install base packages
   community.general.pacman:
     name: "{{ base }}"
@@ -23,3 +31,11 @@
   become: true
   tags:
     - base
+
+- name: Include zsh task
+  ansible.builtin.include_tasks:
+    file: zsh.yml
+
+- name: Include paru task
+  ansible.builtin.include_tasks:
+    file: paru.yml

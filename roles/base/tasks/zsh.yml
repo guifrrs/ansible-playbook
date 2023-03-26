@@ -1,0 +1,22 @@
+- name: Install zsh
+  community.general.pacman:
+    name: zsh
+    state: present
+  become_user: root
+  become: true
+  tags:
+    - zsh
+
+- name: Set zsh as default shell
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    shell: /usr/bin/zsh
+  become: true
+  tags:
+    - zsh
+
+- name: Install Oh My ZSH
+  ansible.builtin.shell: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  register: oh_my_zsh_install
+  changed_when: oh_my_zsh_install.rc == 0

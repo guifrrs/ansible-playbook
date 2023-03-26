@@ -1,0 +1,25 @@
+- name: Clone paru
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/paru.git
+    dest: /home/{{ user_name }}/Downloads/paru
+    update: true
+  tags:
+    - paru
+
+- name: Install paru
+  become: true
+  become_user: "{{ user_name }}"
+  ansible.builtin.shell: |
+    source /home/{{ user_name }}/.zshrc
+    cd /home/{{ user_name }}/Downloads/paru
+    makepkg -si --noconfirm
+  tags:
+    - paru
+
+- name: Clean up paru
+  ansible.builtin.file:
+    path: /home/{{ user_name }}/Downloads/paru
+    state: absent
+  become: true
+  tags:
+    - paru

@@ -1,0 +1,7 @@
+- name: Install Developer tools
+  community.general.pacman:
+    name: "{{ dev }}"
+    state: present
+  become: true
+  tags:
+    - dev

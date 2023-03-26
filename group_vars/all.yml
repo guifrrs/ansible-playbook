@@ -1,0 +1,33 @@
+base:
+  - base-devel
+  - curl
+  - git
+  - htop
+  - openssh
+  - neofetch
+  - tree
+  - xclip
+
+comms:
+  - discord
+  - telegram-desktop
+
+dev:
+  - dbeaver
+  - docker
+  - docker-compose
+
+editors:
+  - neovim
+
+media:
+  - vlc
+
+misc:
+  - obsidian
+
+security:
+  - bitwarden
+  - gufw
+  - ufw
+  - ufw-extras

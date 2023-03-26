@@ -1,0 +1,7 @@
+- name: Install Security tools
+  community.general.pacman:
+    name: "{{ security }}"
+    state: present
+  become: true
+  tags:
+    - security

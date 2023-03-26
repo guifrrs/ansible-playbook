@@ -1,0 +1,8 @@
+- name: Setup and configure a fresh install
+  hosts: all
+  roles:
+    - { role: base, tags: [base] }
+    - { role: comms, tags: [comms] }
+    - { role: dev, tags: [dev] }
+    - { role: editors, tags: [editors] }
+    - { role: security, tags: [security] }

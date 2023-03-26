@@ -1,0 +1,7 @@
+- name: Install Comms. tools
+  community.general.pacman:
+    name: "{{ comms }}"
+    state: present
+  become: true
+  tags:
+    - comms

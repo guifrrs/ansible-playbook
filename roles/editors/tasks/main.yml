@@ -1,0 +1,7 @@
+- name: Install Editors tools
+  community.general.pacman:
+    name: "{{ editors }}"
+    state: present
+  become: true
+  tags:
+    - editors

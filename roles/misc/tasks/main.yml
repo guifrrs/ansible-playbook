@@ -1,0 +1,7 @@
+- name: Install Misc. tools
+  community.general.pacman:
+    name: "{{ misc }}"
+    state: present
+  become: true
+  tags:
+    - misc

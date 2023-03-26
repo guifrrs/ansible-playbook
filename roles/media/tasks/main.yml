@@ -1,0 +1,7 @@
+- name: Install Media tools
+  community.general.pacman:
+    name: "{{ media }}"
+    state: present
+  become: true
+  tags:
+    - media

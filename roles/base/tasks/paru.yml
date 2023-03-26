@@ -1,4 +1,5 @@
 - name: Clone paru
+  become_user: "{{ user_name }}"
   ansible.builtin.git:
     repo: https://aur.archlinux.org/paru.git
     dest: /home/{{ user_name }}/Downloads/paru
@@ -7,7 +8,6 @@
     - paru
 
 - name: Install paru
-  become: true
   become_user: "{{ user_name }}"
   ansible.builtin.shell: |
     source /home/{{ user_name }}/.zshrc
@@ -17,9 +17,9 @@
     - paru
 
 - name: Clean up paru
+  become_user: "{{ user_name }}"
   ansible.builtin.file:
     path: /home/{{ user_name }}/Downloads/paru
     state: absent
-  become: true
   tags:
     - paru

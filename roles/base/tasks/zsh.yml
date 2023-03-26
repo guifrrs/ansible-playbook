@@ -15,8 +15,69 @@
   tags:
     - zsh
 
+- name: Check if oh-my-zsh already exists
+  ansible.builtin.stat:
+    path: /home/{{ user_name }}/.oh-my-zsh
+  register: oh_my_zsh_check
+
 - name: Install Oh My ZSH
+  when: oh_my_zsh_check.stat.exists == false
   ansible.builtin.shell: |
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   register: oh_my_zsh_install
   changed_when: oh_my_zsh_install.rc == 0
+
+- name: Check if .zshrc exists on user home folder
+  ansible.builtin.stat:
+    path: /home/{{ user_name }}/.zshrc
+  register: zsh_file_check
+  tags:
+    - zsh
+
+- name: Create symlink between dotfiles and .zshrc
+  when: zsh_file_check.stat.exists == true
+  ansible.builtin.file:
+    src: /home/{{ user_name }}/Development/dotfiles/.zshrc
+    dest: /home/{{ user_name }}/.zshrc
+    state: link
+    force: true
+  become_user: "{{ user_name }}"
+  tags:
+    - zsh
+
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/{{ user_name }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    version: master
+  become_user: "{{ user_name }}"
+  tags:
+    - zsh
+
+- name: Install zsh-syntax-highlighting
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: /home/{{ user_name }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    version: master
+  become_user: "{{ user_name }}"
+  tags:
+    - zsh
+
+- name: Install zsh-completions
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-completions.git
+    dest: /home/{{ user_name }}/.oh-my-zsh/custom/plugins/zsh-completions
+    version: master
+  become_user: "{{ user_name }}"
+  tags:
+    - zsh
+
+- name: Add zsh plugins
+  ansible.builtin.replace:
+    path: /home/{{ user_name }}/.zshrc
+    regexp: plugins=(git)
+    replace: plugins=(git docker-compose docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+    backup: true
+  become_user: "{{ user_name }}"
+  tags:
+    - zsh

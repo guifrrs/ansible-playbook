@@ -16,6 +16,7 @@ dev:
   - dbeaver
   - docker
   - docker-compose
+  - kitty
   - neovim
 
 dev_aur:
@@ -31,6 +32,12 @@ media_aur:
 
 misc:
   - obsidian
+  - steam
+  - qbittorrent
+  - gnome-extension-shell
+
+misc_aur:
+  - extension-manager
 
 security:
   - bitwarden

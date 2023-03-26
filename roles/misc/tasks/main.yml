@@ -1,7 +1,13 @@
-- name: Install Misc. tools
+- name: Install Misc. packages
   community.general.pacman:
     name: "{{ misc }}"
     state: present
   become: true
+  tags:
+    - misc
+
+- name: Install Misc. packages (AUR)
+  ansible.builtin.command: paru -S {{ item }} --noconfirm
+  loop: "{{ misc_aur }}"
   tags:
     - misc

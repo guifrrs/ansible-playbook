@@ -16,12 +16,18 @@ dev:
   - dbeaver
   - docker
   - docker-compose
-
-editors:
   - neovim
+
+dev_aur:
+  - visual-studio-code-bin
+  - insomnia-bin
+  - httptoolkit
 
 media:
   - vlc
+
+media_aur:
+  - spotify
 
 misc:
   - obsidian

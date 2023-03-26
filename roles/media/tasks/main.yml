@@ -1,7 +1,13 @@
-- name: Install Media tools
+- name: Install Media packages
   community.general.pacman:
     name: "{{ media }}"
     state: present
   become: true
+  tags:
+    - media
+
+- name: Install Media packages (AUR)
+  ansible.builtin.command: paru -S {{ item }} --noconfirm
+  loop: "{{ media_aur }}"
   tags:
     - media

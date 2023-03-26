@@ -1,7 +1,13 @@
-- name: Install Developer tools
+- name: Install Dev. packages
   community.general.pacman:
     name: "{{ dev }}"
     state: present
   become: true
   tags:
     - dev
+
+- name: Install Dev. packages (AUR)
+  ansible.builtin.command: paru -S {{ item }} --noconfirm
+  loop: "{{ dev_aur }}"
+  tags:
+    - media

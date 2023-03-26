@@ -1,4 +1,4 @@
-- name: Install Comms. tools
+- name: Install Comms. packages
   community.general.pacman:
     name: "{{ comms }}"
     state: present

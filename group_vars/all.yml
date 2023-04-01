@@ -35,6 +35,8 @@ misc:
   - steam
   - qbittorrent
   - gnome-extension-shell
+  - ripgrep
+  - ttf-jetbrains-mono-nerd
 
 misc_aur:
   - extension-manager

@@ -39,6 +39,7 @@ misc:
   - ttf-jetbrains-mono-nerd
 
 misc_aur:
+  - grive
   - extension-manager
 
 security:

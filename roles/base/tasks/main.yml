@@ -19,7 +19,7 @@
 - name: Clone dotfiles
   ansible.builtin.git:
     repo: https://github.com/guifrrs/dotfiles
-    dest: /home/{{ user_name }}/Development/dotfiles
+    dest: /home/{{ user_name }}/dotfiles
     update: true
   tags:
     - base
